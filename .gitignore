@@ -1,1 +1,80 @@
-.vscode
+# Python 기본 설정
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.env
+.env
+
+# 환경 설정 및 가상 환경
+.Python
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# IDE 및 편집기 파일
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# 운영 체제 관련 파일
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 로그 및 디버그 파일
+*.log
+*.out
+*.err
+
+# 테스트 및 빌드 파일
+coverage/
+htmlcov/
+.tox/
+.nox/
+*.cover
+*.coverage
+*.py,cover
+.hypothesis/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.egg-info/
+.eggs/
+
+# 빌드 시스템 파일
+build/
+dist/
+*.egg
+*.egg-info
+.installed.cfg
+*.egg-info/
+MANIFEST
+
+# Flask/Django 관련
+instance/
+*.sqlite3
+db.sqlite3
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# MyPy
+.mypy_cache/
+
+# PyInstaller
+*.spec
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# 기타
+*.snap
+*.swp
+*.swo
