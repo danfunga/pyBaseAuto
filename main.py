@@ -1,5 +1,5 @@
 import tkinter as tk
-from src.base_auto_gui import BaseAutoGui
+from src.gui.base_auto_gui import BaseAutoGui
 
 def main():
     root = tk.Tk()
