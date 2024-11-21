@@ -37,8 +37,7 @@ class BaseAutoGui:
         play_role_label.pack(side=tk.LEFT)
         self.play_role_var = tk.StringVar()
         self.play_role_var.set(self.config_manager.get('Settings', 'play_role', fallback='N/A'))
-        self.play_role_options = ['단독', '리그', '랭대', '홈런', '히스', '스테', '친구', '타홀', '실대', '보상', '등반']
-        # self.play_role_options = ['단독', '리그', '랭대', '홈런', '히스', '스테', '친구', '타홀', '실대', '클협', '보상']
+        self.play_role_options = ConfigManager.DEFAULT_ROLE_LIST
         self.play_role_menu = tk.OptionMenu(info_frame, self.play_role_var, *self.play_role_options)
         self.play_role_menu.pack(side=tk.LEFT, padx=5, pady=5)
         self.play_role_menu.configure(relief=tk.SOLID, bd=2)

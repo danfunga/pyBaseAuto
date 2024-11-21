@@ -3,9 +3,52 @@ import os
 
 
 class ConfigManager:
+    DEFAULT_ALONE_MODE_ROLE_ENABLE = {
+        '리그': 1,
+        '랭대': 1,
+        '홈런': 1,
+        '패넌': 1,
+        '스테': 1,
+        '타홀': 1,
+        '히스': 1,
+        '친구': 1,
+        '보상': 1,
+        '실대': 0,
+    }
+    DEFAULT_COUNT_PER_SINGLE_MODE = {
+        '리그': -1,
+        '랭대': -1,
+        '홈런': -1,
+        '패넌': -1,
+        '스테': -1,
+        '타홀': -1,
+        '히스': -1,
+        '친구': 40,
+        '보상': 1,
+        '실대': 2,
+    }
+    DEFAULT_COUNT_PER_ALONE_MODE = {
+        '리그': (5, -1),
+        '랭대': (-1, -1),
+        '홈런': (-1, -1),
+        '패넌': (1, 1),
+        '스테': (3, 3),
+        '타홀': (-1, -1),
+        '히스': (-1, -1),
+        '친구': (10, -1),
+        '보상': (1, -1),
+        '실대': (2, 1),
+    }
+
+    # '단독'을 맨 앞에, '등반'을 맨 뒤에 추가
+    DEFAULT_ROLE_LIST = ['단독'] + list(DEFAULT_ALONE_MODE_ROLE_ENABLE.keys())
+
     def __init__(self, config_file='config/config.ini'):
         self.config_file = config_file
         self.config = configparser.ConfigParser()
+        role_order = [role for role in ConfigManager.DEFAULT_ALONE_MODE_ROLE_ENABLE.keys()]
+        # 'role_order'를 쉼표로 구분된 문자열로 결합
+        role_order_str = ','.join(role_order)
         self.default_settings = {
             'Gui_Config': {
                 'pos_x': '20',
@@ -16,21 +59,13 @@ class ConfigManager:
                 'play_role': '단독',
                 'game_type': '전체'
             },
-            'StandaloneMode_Roles': {
-                '랭대': '1',
-                '리그': '1',
-                '보상': '1',
-                '스테': '1',
-                '실대': '0',
-                '친구': '1',
-                '클협': '0',
-                '타홀': '1',
-                '홈런': '1',
-                '히스': '1'
-            },
+            'StandaloneMode_Roles':
+                ConfigManager.DEFAULT_ALONE_MODE_ROLE_ENABLE
+            ,
             'Detail_Settings': {
-                'role_order': '리그,실대,홈런,랭대,히스,스테,타홀,클협,친구,보상',
+                'role_order': role_order_str,
                 'enable_use_equip_on_ranking_battle': '0',
+                'enable_boost': '0',
                 'enable_front_active': '1'
             },
             'Delay_Settings': {
@@ -40,26 +75,10 @@ class ConfigManager:
                 'reboot_delay': '20'
             },
             'Statistics': {
-                '등반': '0',
-                '랭대': '0',
-                '로얄': '0',
-                '리그': '0',
-                '보상': '0',
-                '스테': '0',
-                '실대': '0',
-                '친구': '0',
-                '클협': '0',
-                '타홀': '0',
-                '홈런': '0',
-                '히스': '0',
-                '매니저': '0',
-                '매니저_성공': '0',
-                '재기동': '0',
-                '재기동_성공': '0',
-                '탭닫기': '1',
-                '탭닫기_성공': '1'
+                role: 0 for role in ConfigManager.DEFAULT_ALONE_MODE_ROLE_ENABLE.keys()
             }
         }
+        self.default_settings['Statistics'].update({'재기동': 0, '메롱': 0})
 
         # Ensure the config directory exists
         os.makedirs(os.path.dirname(self.config_file), exist_ok=True)
@@ -118,4 +137,3 @@ class ConfigManager:
     # def save(self):
     #     with open(self.config_file, 'w',encoding='utf-8') as configfile:
     #         self.config.write(configfile)
-

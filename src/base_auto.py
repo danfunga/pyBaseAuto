@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 
-# from src.controller import game_controller
-from controller import GameController
-
-from config.config_manager import ConfigManager
+from src.controller.game_controller import GameController
+from src.config.config_manager import ConfigManager
 
 
 # from src.image_finder import finder

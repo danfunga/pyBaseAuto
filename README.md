@@ -1,6 +1,32 @@
+
+
 # PyAutoBase 프로젝트 구조
 
 `PyAutoBase`는 Com2uS의 프로야구 매크로를 자동화하는 Python 기반의 프로젝트입니다. 이 프로젝트는 다양한 모드를 지원하며, 각 모드는 독립적으로 동작하고, 작업을 완료한 후 다음 모드로 전환됩니다. 전체 흐름은 GUI와 매크로 루프를 통해 제어됩니다.
+
+## 설계
+BaseAuto
+  * GameController 
+    * ImageDetector
+      * 추후 AI를 통한 ImageDetect를 수행하면 좋겠다.
+    * ImageClicker
+  * ModeMap <ModeName, Mode >
+  * ConfigManager
+    * Config를 File에 저장 및 관리
+    * Statistic의 경우를 별도로 할지 함께 할지
+    * ConfigStatManager??
+  * BaseAutoGUI
+    * ConfigStatManager의 data와 동기가 되는 GUI
+    * 최초 Config를 File에서 읽어서 GUI에 표현하고
+    * start시 GUI의 값을 읽어서 File에 저장 Sync
+  * Player
+    * Config의 Mode 값으로 player를 생성된다.
+    * Config의 Mode가 단독이라면 
+      * Config의 Enabled 정보로 Setting된다
+      * Count는 각 mode 별로 얻어온다.
+      * 단독일 경우와 개별일 경우를 얻어온다. static
+      * 
+
 
 ## 프로젝트 디렉토리 구조
 
